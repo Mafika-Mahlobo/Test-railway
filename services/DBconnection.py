@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def test_connection():
-    print("⏳ Testing DB connection...") 
+def get_DBconnection():
     try:
         conn = mysql.connector.connect(
             host=os.getenv("DB_HOST"),
@@ -15,7 +14,7 @@ def test_connection():
             port=os.getenv("DB_PORT", 37708)
         )
         if conn.is_connected():
-            return "DB connected"
+            return conn
     except Exception as e:
-        print("The DB connection is the issue!")
-        return f"The DB connection is the issue!"
+        return f"DB connection error: {e}"
+    return None

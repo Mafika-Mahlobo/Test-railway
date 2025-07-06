@@ -1,14 +1,13 @@
 from flask import Flask, render_template
 import os
-from services.db_test import test_connection
+from services.compute_results import total_surveys
 
 app = Flask(__name__)
 port = int(os.environ.get("PORT", 5000))
 
 @app.route("/")
 def main():
-    status = test_connection()
-    return f"Status: {status}"
+    return f"Total Surveys: {total_surveys()}"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
