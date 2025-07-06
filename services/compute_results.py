@@ -12,7 +12,7 @@ else:
 	print("No DB connection")
 	cursor = None
 
-def total_surveys():
+def total_surveys(cursor):
 
 	"""
 	returns number of surveys.
@@ -42,7 +42,7 @@ def total_surveys():
 		return f"Error: {err}"
 
 
-def average_age():
+def average_age(cursor):
 
 	"""
 	Returns the average of participants

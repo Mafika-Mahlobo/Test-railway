@@ -14,7 +14,7 @@ def get_DBconnection():
             port=os.getenv("DB_PORT", 37708)
         )
         if conn.is_connected():
-            return conn
+            return "dB connection works"
     except Exception as e:
         return f"DB connection error: {e}"
     return None
