@@ -6,8 +6,10 @@ import mysql.connector
 
 conn = get_DBconnection()
 if conn:
+	print("Connection works!")
 	cursor = conn.cursor()
 else:
+	print("No DB connection")
 	cursor = None
 
 def total_surveys():
