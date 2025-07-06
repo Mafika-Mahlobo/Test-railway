@@ -17,5 +17,5 @@ def test_connection():
         if conn.is_connected():
             return "DB connected"
     except Exception as e:
-        print(f"❌ DB error: {e}")
-        return f"DB connection error: {e}"
+        print("The DB connection is the issue!")
+        return f"The DB connection is the issue!"
