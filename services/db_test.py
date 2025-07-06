@@ -12,7 +12,7 @@ def test_connection():
             user=os.getenv("DB_USER"),
             password=os.getenv("DB_PASSWORD"),
             database=os.getenv("DB_NAME"),
-            port=os.getenv("DB_PORT", 3306)
+            port=os.getenv("DB_PORT", 37708)
         )
         if conn.is_connected():
             return "DB connected"
