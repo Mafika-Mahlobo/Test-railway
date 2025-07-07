@@ -3,6 +3,9 @@ Survey results
 """
 from DBconnection import get_DBconnection
 import mysql.connector
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 conn = get_DBconnection()
 if conn:
