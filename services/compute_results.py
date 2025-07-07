@@ -6,17 +6,21 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from DBconnection import get_DBconnection
 
-conn = get_DBconnection()
-if conn:
-	print("Database connected!")
-	cursor = conn.cursor()
-else:
-	print("No DB connection")
-	cursor = None
+
+
 
 def total_surveys():
+
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 
 	"""
 	returns number of surveys.
@@ -58,6 +62,16 @@ def average_age():
 		average_age (int): Integer representing an averange of age
 	"""
 
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
+
 	
 	query = "SELECT AVG(age) AS Average_age FROM Survey"
 
@@ -80,6 +94,16 @@ def oldest():
 	Returns the oldest person
 	"""
 
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
+
 
 	query = "SELECT fullname, age FROM Survey WHERE age = (SELECT MAX(age) FROM Survey)"
 
@@ -99,6 +123,16 @@ def youngest():
 	"""
 	Returns youngest person
 	"""
+
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 
 
 	query = "SELECT fullname, age FROM Survey WHERE age = (SELECT 	MIN(age) FROM Survey)"
@@ -120,6 +154,16 @@ def pizza():
 	Returns percentage of people who like pizza 
 	"""
 
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
+
 
 
 
@@ -140,7 +184,15 @@ def pasta():
 	"""
 	Returns percentage of people who like pasta 
 	"""
-
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 	
 
 	query = "SELECT (SUM(pasta = 1) / COUNT(*)) * 100 FROM Survey"
@@ -160,7 +212,15 @@ def pap_wors():
 	"""
 	Returns percentage of people who like Pap and  Wors
 	"""
-
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 
 
 	query = "SELECT (SUM(pap_and_wors = 1) / COUNT(*)) * 100 FROM Survey"
@@ -181,7 +241,15 @@ def movie():
 	"""
 	Returns the average rating for people who like movies
 	"""
-
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 	
 
 	query = "SELECT AVG(6 - movies) FROM Survey"
@@ -201,7 +269,15 @@ def radio():
 	"""
 	Returns the average rating for people who like radio
 	"""
-
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 	
 
 	query = "SELECT AVG(6 - radio) FROM Survey"
@@ -221,7 +297,15 @@ def eating_out():
 	"""
 	Returns the average rating for people who like eating out
 	"""
-
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 	
 
 	query = "SELECT AVG(6 - eat_out) FROM Survey"
@@ -242,7 +326,15 @@ def tv():
 	Returns the average rating for people who like tv
 	"""
 
-
+	from DBconnection import get_DBconnection
+	conn = get_DBconnection()
+	
+	if conn:
+		print("Database connected!")
+		cursor = conn.cursor()
+	else:
+		print("No DB connection")
+		cursor = None
 
 	query = "SELECT AVG(6 - tv) FROM Survey"
 
