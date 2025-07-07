@@ -1,11 +1,12 @@
 """
 Survey results
 """
-from DBconnection import get_DBconnection
 import mysql.connector
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from DBconnection import get_DBconnection
 
 conn = get_DBconnection()
 if conn:
