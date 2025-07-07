@@ -1,9 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-    <title>My Test App</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta charset="description" content="Public survey">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}"> 
+	<!-- <link rel="stylesheet" type="text/css" href="../static/styles/styles.css"> -->
+	<title>Survey</title>
 </head>
 <body>
-    <h1>Hello from Flask + Railway!</h1>
+	<header class="header">
+		<section class="head-container">
+			<span class="logo">_Surveys</span>
+			<ul class="navigation">
+				<li class="nav-item nav-active"><a href="#">FILL SURVEY</a></li>
+				<li class="nav-item"><a href="{{ url_for('survery_results') }}">VIEW SURVEY RESULTS</a></li>
+			</ul>
+		</section>
+	</header>
+	<body class="body-container">
+		<span class="response" id="error">{{ error }}</span>
+		<span class="response" id="success">{{ success }}</span>
+		<form class="survey-form" action="/submit" method="post"> 
+			<section class="user-details-section">
+				<div class="label-container">
+					<p>Personal Details:</p>
+				</div>
+				<div class="user-inputs-container">
+					<label>Full Names</label>
+					<input type="text" name="fullname" required >
+					<label>Email</label>
+					<input type="email" name="email" required>
+					<label>Date of Birth</label>
+					<input type="date" name="date" required>
+					<input type="hidden" id="date_value" name="age">
+					<label>Contact Number</label>
+					<input type="tel" name="phone_number" required>
+				</div>
+			</section>
+			<section class="options-section">
+				<p>What is your favorite food?</p>
+				<ul class="options-list-container">
+					<li class="nav-item option-list-items">
+						<input class="options-checkbox" type="checkbox" name="pizza" id="g">
+						<label>Pizza</label>
+					</li>
+					<li class="nav-item option-list-items">
+						<input class="options-checkbox" type="checkbox" name="pasta">
+						<label>Pasta</label>
+					</li class="nav-item option-list-items">
+					<li class="nav-item option-list-items">
+						<input class="options-checkbox" type="checkbox" name="pap">
+						<label>Pap and Wors</label>
+					</li>
+					<li class="nav-item option-list-items">
+						<input  class="options-checkbox" type="checkbox" name="other">
+						<label>Other</label>
+					</li>
+				</ul>
+				
+			</section>
+			<section class="rating-section">
+				<p>Please rate your level of agreement on a scale from 1 to 5, with 1 being "strongly agree" and 5 being "strongly disagree."</p>
+				<table class="rating-table table-outside">
+					<th class="rating-table rating-table-head">
+
+						<!-- <td class="rating-table"></td> -->
+						<td class="rating-table rating-radios rating-table-head">Strongly Agree</td>
+						<td class="rating-table rating-radios rating-table-head">Agree</td>
+						<td class="rating-table rating-radios rating-table-head">Neutral</td>
+						<td class="rating-table rating-radios rating-table-head">Disagree</td>
+						<td class="rating-table rating-radios rating-table-head">Strongly Disagree</td>
+					</th>
+					<tr class="rating-table">
+						<td class="rating-table table-border table-border">I like to watch movies</td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="1" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="2" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="3" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="4" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="5" required></td>
+					</tr>
+					<tr class="rating-table">
+						<td class="rating-tabl table-border table-border">I like to listen to radio</td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="1" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="2" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="3" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="4" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="5" required></td>
+					</tr>
+					<tr>
+						<td class="rating-table table-border">I like to eact out</td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="1" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="2" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="3" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="4" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="5" required></td>
+					</tr>
+					<tr class="rating-table table-border">
+						<td class="rating-table">I like to watch TV</td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="1" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="2" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="3" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="4" required></td>
+						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="5" required></td>
+					</tr>
+				</table>
+			</section>
+			<section class="submit-section">
+				<button class="submit-button">SUBMIT</button>
+			</section>
+		</form>
+	</body>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<!-- <script type="text/javascript" src="../static/js/script.js"></script> -->
