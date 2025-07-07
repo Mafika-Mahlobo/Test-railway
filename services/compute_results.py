@@ -10,7 +10,7 @@ from DBconnection import get_DBconnection
 
 conn = get_DBconnection()
 if conn:
-	print("Connection works!")
+	print("Database connected!")
 	cursor = conn.cursor()
 else:
 	print("No DB connection")
