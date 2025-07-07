@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta charset="description" content="Public survey">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}"> 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<title>Survey</title>
+</head>
+<body>
+	<header class="header">
+		<section class="head-container">
+			<span class="logo">_Surveys</span>
+			<ul class="navigation">
+				<li class="nav-item"><a href="{{ url_for('main') }}">FILL SURVEY</a></li>
+				<li class="nav-item nav-active"><a href="#">VIEW SURVEY RESULTS</a></li>
+			</ul>
+		</section>
+	</header>
+	<body class="body-container">
+        <head class="healding-container">
+            <h2 class="result-heading">Survey Results</h2>
+        </head>
+		<section>
+            <span class="survey-message">{{ results_message }}</span>
+            <div class="results-body-container">
+                <section class="result-section">
+                    <div class="result-data">
+                        <p>Total number of surveys:</p>
+                        <p>Average Age:</p>
+                        <p>Oldest person who participated in survey:</p>
+                        <p>Youngest person who participated in survey:</p>
+                    </div>
+                    <div class="result-data stats-container">
+                        <p>{{ total }}</p>
+                        <p>{{ average_age }}</p>
+                        <p>{{ old_name }} ({{ old_age }} years old)</p>
+                        <p>{{young_name}} ({{ young_age }} years old)</p>
+                    </div> 
+                </section>
+                <section class="result-section">
+                    <div class="result-data">
+                        <p>Percentage of people who like Pizza:</p>
+                        <p>percentage of people who like Pasta:</p>
+                        <P>Percentage of people who like Pap and Wors:</P>
+                    </div>
+                    <div class="result-data stats-container">
+                        <p>{{ pizza }}% Pizza</p>
+                        <p>{{ pasta }}% Pasta</p>
+                        <p>{{ pap }}% Pap and Wors</p>
+                    </div>
+                </section>
+                <section class="result-section">
+                    <div class="result-data">
+                        <p>People who like to watch movies:</p>
+                        <p>People who like to listen to radio:</p>
+                        <p>People who like to eat out:</p>
+                        <p>People who like to watch TV:</p>
+                    </div>
+                    <div class="result-data stats-container">
+                        <p>{{ movie_rating }}</p>
+                        <p>{{ radio }}</p>
+                        <p>{{ eat }}</p>
+                        <p>{{ tv }}</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+	</body>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>

@@ -7,7 +7,7 @@ port = int(os.environ.get("PORT", 5000))
 
 @app.route("/")
 def main():
-    return f'DB connection - total surveys: {total_surveys()}'
+    return render_template('results.html', total=total_surveys())
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
