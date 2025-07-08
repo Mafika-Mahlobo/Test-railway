@@ -6,6 +6,7 @@
 	<meta charset="description" content="Public survey">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}"> 
 	<!-- <link rel="stylesheet" type="text/css" href="../static/styles/styles.css"> -->
+	 <script src="https://kit.fontawesome.com/05347b7874.js" crossorigin="anonymous"></script>
 	<title>Survey</title>
 </head>
 <body>
@@ -16,6 +17,10 @@
 				<li class="nav-item nav-active"><a href="#">FILL SURVEY</a></li>
 				<li class="nav-item"><a href="{{ url_for('survery_results') }}">VIEW SURVEY RESULTS</a></li>
 			</ul>
+			
+		</section>
+		<section>
+			<span class="mobile-nav"><i class="fa-solid fa-bars"></i></span>
 		</section>
 	</header>
 	<body class="body-container">
