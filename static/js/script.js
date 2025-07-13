@@ -1,6 +1,7 @@
 $(document).ready( function() {
+    let isSubmitting = false;
 
-	$("input[name='pizza']").on("change", function() {
+ $("input[name='pizza']").on("change", function() {
 
 		if ($(this).is(":checked")) {
 			$(this).val(1);
@@ -67,11 +68,63 @@ $(document).ready( function() {
 
    	});
 
-	if ($(".survey-message").text().trim() != "") {
-		$(".results-body-container").css("display", "none");
-		$(".survey-message").css("display", "block");
-	} 
+    $(".mobile-nav").click(function(){
+        $(".mobile-options").slideToggle();   
+    });
 
-	// $(this).delay(3000).fadeOut('slow');
-});
+    $("#form").submit(function(e) {
+
+        if (isSubmitting) return;
+
+        isSubmitting = true;
+
+        $(".page-pop-up").fadeIn();
+        $.ajax({
+            type: "POST",
+            url: "/submit",
+            data: $(this).serialize(),
+            success: function(response){
+                isSubmitting = false;
+                $(".loading-icon").hide();
+            },
+            error: function(xhr) {
+                isSubmitting = false;
+                $(".loading-icon").hide();
+            }
+        })
+
+    });
+
+	$(".menu-item-click").click(function(){
+		$(".page-pop-up").show();
+	});
 	
+	$(".radio-buttons").click(function(){
+		console.log($(this).val());
+	});
+
+    
+
+	if ($(".survey-message").text().trim() != "") {
+		$(".No-survey-message").css("display", "block");
+	}
+
+	if($("#sucess-message").text().trim() != ""){
+		$(".server-feedback").fadeIn();
+		$(".result-1").fadeIn();
+	}
+
+	if ($("#error-message").text().trim() != ""){
+		$(".server-feedback").fadeIn();
+		$(".result-2").fadeIn();
+	}
+
+	$(".logo-style").click(function(){
+		 $(".server-feedback").fadeIn();
+	});
+
+	$(".server-feedback").click(function(){
+		$(this).fadeOut();
+	});
+
+});

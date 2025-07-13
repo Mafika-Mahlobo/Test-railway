@@ -15,9 +15,8 @@ def main():
 def survery_results():
 
     total = total_surveys()
-    print(total)
     if (total == 0):
-        return render_template("results.html", results_message="No Surveys Available.")
+        return render_template("results.html", results_message="No Survey results available.")
     ave_age = round(average_age(), 2)
     max_name = oldest()[0]
     max_age = oldest()[1]
@@ -38,10 +37,11 @@ def survery_results():
 @app.route("/submit", methods=["POST"])
 def submit():
     if request.method == "POST":
-        name = request.form["fullname"]
-        email = request.form["email"]
-        age = request.form["age"]
-        phone = request.form["phone_number"]
+        name = request.form.get("fullname", "").strip()
+        email = request.form.get("email", "").strip()
+        age = request.form.get("age").strip()
+        phone = request.form.get("phone_number")
+
 
         pizza = int(request.form.get("pizza", "0"))
         pasta = int(request.form.get("pasta", "0"))
@@ -70,4 +70,4 @@ def submit():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)

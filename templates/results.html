@@ -1,74 +1,97 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html> 
+<html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-	<meta charset="description" content="Public survey">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}"> 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	<title>Survey</title>
+	<meta name="viewport", content="width=device-width, initial-scale=1.0">
+
+	<!-- styles -->
+	<link rel="stylesheet" type="text/css" href="../static/styles/base.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/layout.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/componets.css">
+	<title>_Surverys</title>
 </head>
 <body>
-	<header class="header">
-		<section class="head-container">
-			<span class="logo">_Surveys</span>
-			<ul class="navigation">
-				<li class="nav-item"><a href="{{ url_for('main') }}">FILL SURVEY</a></li>
-				<li class="nav-item nav-active"><a href="#">VIEW SURVEY RESULTS</a></li>
-			</ul>
+	<div class="page-pop-up">
+		<section class="loading-icon">
+			<div class="loader"></div>
 		</section>
-	</header>
-	<body class="body-container">
-        <head class="healding-container">
-            <h2 class="result-heading">Survey Results</h2>
-        </head>
-		<section>
-            <span class="survey-message">{{ results_message }}</span>
-            <div class="results-body-container">
-                <section class="result-section">
-                    <div class="result-data">
-                        <p>Total number of surveys:</p>
-                        <p>Average Age:</p>
-                        <p>Oldest person who participated in survey:</p>
-                        <p>Youngest person who participated in survey:</p>
-                    </div>
-                    <div class="result-data stats-container">
-                        <p>{{ total }}</p>
-                        <p>{{ average_age }}</p>
-                        <p>{{ old_name }} ({{ old_age }} years old)</p>
-                        <p>{{young_name}} ({{ young_age }} years old)</p>
-                    </div> 
-                </section>
-                <section class="result-section">
-                    <div class="result-data">
-                        <p>Percentage of people who like Pizza:</p>
-                        <p>percentage of people who like Pasta:</p>
-                        <P>Percentage of people who like Pap and Wors:</P>
-                    </div>
-                    <div class="result-data stats-container">
-                        <p>{{ pizza }}% Pizza</p>
-                        <p>{{ pasta }}% Pasta</p>
-                        <p>{{ pap }}% Pap and Wors</p>
-                    </div>
-                </section>
-                <section class="result-section">
-                    <div class="result-data">
-                        <p>People who like to watch movies:</p>
-                        <p>People who like to listen to radio:</p>
-                        <p>People who like to eat out:</p>
-                        <p>People who like to watch TV:</p>
-                    </div>
-                    <div class="result-data stats-container">
-                        <p>{{ movie_rating }}</p>
-                        <p>{{ radio }}</p>
-                        <p>{{ eat }}</p>
-                        <p>{{ tv }}</p>
-                    </div>
-                </section>
-            </div>
+		<section class="message">
+			<p>Processing...</p>
+		</section>
+	</div>
+	<div class="No-survey-message page-pop-up">
+			<div>
+					<h1><span class="survey-message">{{ results_message }}</span></h1>
+			</div>
+			<div>
+				<a href="{{ url_for('main') }}"><button class="submit-button back-to-home">Complete Survey</button></a>
+			</div>
+	</div>
+	<section class="app-contaniner">
+		<header class="header-container">
+			<div class="logo">
+				<p class="logo-style">_Serverys</p>
+			</div>
+			<div class="mobile-nav">
+					<p class="mobile-menu"><i class="fa-solid fa-bars"></i></p>
+			</div>
+			<div class="desktop-nav-container">
+				<a href="{{ url_for('main') }}">
+				<div class="desktop-nav menu-item-click">
+					<ul class="nav-links desktop-nav-link ">
+						<li>Complete Survery</li>
+					</ul>
+				</div>
+				</a>
+				<a href="#">
+				<div class="desktop-nav desktop-nav-active">
+					<ul class="nav-links desktop-nav-link">
+						<li>View Results</li>
+					</ul>
+				</div>
+				</a>
+			</div>
+		</header>
+		<div class="mobile-options">
+			<nav >
+				<ul class="nav-links">
+					<a href="{{ url_for('main') }}"><li class="mobile-menu-list-items menu-item-click list-item-active">Complete Survery</li></a>
+					<a href="#"><li class="mobile-menu-list-items ">View Results</li></a>
+				</ul>
+			</nav>
+		</div>
+        <section class="result-container">
+            <section class="result-heading">
+                <h1>Survey Results</h1>
+            </section>
+            <section class="results-body input-sections">
+                <p>Total number of surveys:  {{ total }}</p>
+                <p>Average Age: {{ average_age }}</p>
+                <p>Oldest participant: {{ old_name }} ({{ old_age }} years old)</p>
+                <p>Youngest participant: {{young_name}} ({{ young_age }} years old)</p>
+            </section>
+            <section class="result-heading">
+                <p>percentages</p>
+            </section>
+            <section class="results-body input-sections">
+                <p>People who like Pizza: {{ pizza }}% Pizza</p>
+                <p>People who like Pasta: {{ pasta }}% Pasta</p>
+                <p>People who like Pap and Wors: {{ pap }}% Pap and Wors</p>
+            </section> 
+            <section class="result-heading">
+                <p>Averages</p>
+            </section>
+            <section class="results-body input-sections">
+                <p>People who like to watch movies: {{ movie_rating }}</p>
+                <p>People who like to listen to radio: {{ radio }}</p>
+                <p>People who like to eat out: {{ eat }}</p>
+                <p>People who like to watch TV: {{ tv }}</p>
+            </section>
         </section>
-	</body>
+		
+	</section>
 </body>
 </html>
+<script src="https://kit.fontawesome.com/05347b7874.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="../static/js/Script.js"></script>

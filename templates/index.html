@@ -1,123 +1,194 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html> 
+<html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-	<meta charset="description" content="Public survey">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}"> 
-	<!-- <link rel="stylesheet" type="text/css" href="../static/styles/styles.css"> -->
-	 <script src="https://kit.fontawesome.com/05347b7874.js" crossorigin="anonymous"></script>
-	<title>Survey</title>
+	<meta name="viewport", content="width=device-width, initial-scale=1.0">
+
+	<!-- styles -->
+	<link rel="stylesheet" type="text/css" href="../static/styles/base.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/layout.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/componets.css">
+	<title>_Surverys</title>
 </head>
 <body>
-	<header class="header">
-		<section class="head-container">
-			<span class="logo">_Surveys</span>
-			<ul class="navigation">
-				<li class="nav-item nav-active"><a href="#">FILL SURVEY</a></li>
-				<li class="nav-item"><a href="{{ url_for('survery_results') }}">VIEW SURVEY RESULTS</a></li>
-			</ul>
-			
+	<div class="page-pop-up">
+		<section class="loading-icon">
+			<div class="loader"></div>
 		</section>
-		<section>
-			<span class="mobile-nav"><i class="fa-solid fa-bars"></i></span>
+		<section class="message">
+			<p id="response">Processing...</p>
 		</section>
-	</header>
-	<body class="body-container">
-		<span class="response" id="error">{{ error }}</span>
-		<span class="response" id="success">{{ success }}</span>
-		<form class="survey-form" action="/submit" method="post"> 
-			<section class="user-details-section">
-				<div class="label-container">
-					<p>Personal Details:</p>
+	</div>
+	<div class="server-feedback">
+		<p class="result result-1">
+			<i class="fa-regular fa-circle-check"></i>
+		</p>
+		<p class="result result-2">
+			<i class="fa-solid fa-triangle-exclamation"></i>
+		</p>
+		<p id="sucess-message">{{ success }}</p>
+		<p id="error-message">{{ error }}</p>
+	</div>
+	<section class="app-contaniner">
+		<header class="header-container">
+			<div class="logo">
+				<p class="logo-style">_Serverys</p>
+			</div>
+			<div class="mobile-nav">
+					<p class="mobile-menu"><i class="fa-solid fa-bars"></i></p>
+			</div>
+			<div class="desktop-nav-container">
+				<a href="#">
+				<div class="desktop-nav desktop-nav-active">
+					<ul class="nav-links desktop-nav-link">
+						<li>Complete Survery</li>
+					</ul>
 				</div>
-				<div class="user-inputs-container">
-					<label>Full Names</label>
-					<input type="text" name="fullname" required >
-					<label>Email</label>
-					<input type="email" name="email" required>
-					<label>Date of Birth</label>
-					<input type="date" name="date" required>
-					<input type="hidden" id="date_value" name="age">
-					<label>Contact Number</label>
-					<input type="tel" name="phone_number" required>
+				</a>
+				<a href="{{ url_for('survery_results') }}">
+				<div class="desktop-nav menu-item-click">
+					<ul class="nav-links desktop-nav-link ">
+						<li>View Results</li>
+					</ul>
 				</div>
-			</section>
-			<section class="options-section">
-				<p>What is your favorite food?</p>
-				<ul class="options-list-container">
-					<li class="nav-item option-list-items">
-						<input class="options-checkbox" type="checkbox" name="pizza" id="g">
-						<label>Pizza</label>
-					</li>
-					<li class="nav-item option-list-items">
-						<input class="options-checkbox" type="checkbox" name="pasta">
-						<label>Pasta</label>
-					</li class="nav-item option-list-items">
-					<li class="nav-item option-list-items">
-						<input class="options-checkbox" type="checkbox" name="pap">
-						<label>Pap and Wors</label>
-					</li>
-					<li class="nav-item option-list-items">
-						<input  class="options-checkbox" type="checkbox" name="other">
-						<label>Other</label>
-					</li>
+				</a>
+			</div>
+		</header>
+		<div class="mobile-options">
+			<nav >
+				<ul class="nav-links">
+					<a href="#"><li class="mobile-menu-list-items">Complete Survery</li></a>
+					<a href="{{ url_for('survery_results') }}"><li class="mobile-menu-list-items menu-item-click list-item-active">View Results</li></a>
 				</ul>
-				
+			</nav>
+		</div>
+		<form id="form"  action="/submit" method="post">
+		<section class="body-container">
+			<section class="section-one body-sections">
+				<p class="section-one-heading">Personal Details</p>
 			</section>
-			<section class="rating-section">
-				<p>Please rate your level of agreement on a scale from 1 to 5, with 1 being "strongly agree" and 5 being "strongly disagree."</p>
-				<table class="rating-table table-outside">
-					<th class="rating-table rating-table-head">
-
-						<!-- <td class="rating-table"></td> -->
-						<td class="rating-table rating-radios rating-table-head">Strongly Agree</td>
-						<td class="rating-table rating-radios rating-table-head">Agree</td>
-						<td class="rating-table rating-radios rating-table-head">Neutral</td>
-						<td class="rating-table rating-radios rating-table-head">Disagree</td>
-						<td class="rating-table rating-radios rating-table-head">Strongly Disagree</td>
-					</th>
-					<tr class="rating-table">
-						<td class="rating-table table-border table-border">I like to watch movies</td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="1" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="2" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="3" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="4" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="movie" value="5" required></td>
-					</tr>
-					<tr class="rating-table">
-						<td class="rating-tabl table-border table-border">I like to listen to radio</td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="1" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="2" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="3" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="4" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="radio" value="5" required></td>
-					</tr>
-					<tr>
-						<td class="rating-table table-border">I like to eact out</td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="1" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="2" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="3" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="4" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="eat" value="5" required></td>
-					</tr>
-					<tr class="rating-table table-border">
-						<td class="rating-table">I like to watch TV</td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="1" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="2" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="3" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="4" required></td>
-						<td class="rating-table rating-radios table-border"><input type="radio" name="tv" value="5" required></td>
-					</tr>
-				</table>
+			<section class="section-two-info body-sections input-sections">
+				<div class="desktop-info-form">
+					<div class="subsection-two">
+						<label for="name"  class="personal-detail-label" >Full Names: </label>
+						<input type="text" name="fullname" id="name" class="personal-detail-input" required>
+					</div>
+					<div class="subsection-two">
+						<label for="email"  class="personal-detail-label">Email: </label>
+						<input type="email" id="email" class="personal-detail-input" name="email" required>
+					</div>
+					<div class="subsection-two">
+						<label for="date"  class="personal-detail-label">Date: </label>
+						<input type="date" id="date" class="personal-detail-input" name="date" required>
+						<input type="hidden" id="date_value" name="age">
+					</div>
+					<div class="subsection-two">
+						<label for="phone"  class="personal-detail-label">Phone Number:</label>
+						<input type="text" id="phone" class="personal-detail-input" name="phone_number" required>
+					</div>
+				</div>
+			</section>
+			<section class="section-three section-one body-sections">
+				<p class="section-one-heading">What is your favorite food?</p>
+			</section>
+			<section class="section-four body-sections input-sections">
+				<div class="check-box-container">
+					<div>
+						<label for="pizza" class="personal-detail-label">Pizza</label>
+						<input type="checkbox" id="pizza" class="radio-inputs check-box-style" name="pizza">
+					</div>
+					<div>
+						<label for="pasta" class="personal-detail-label">Pasta</label>
+						<input type="checkbox" id="pasta" class="radio-inputs check-box-style" name="pasta">
+					</div>
+					<div>
+						<label for="pap" class="personal-detail-label">Pap & Wors</label>
+						<input type="checkbox" id="pap" class="radio-inputs check-box-style" name="pap">
+					</div>
+					<div>
+						<label for="other" class="personal-detail-label">Other</label>
+						<input type="checkbox" id="other" class="radio-inputs check-box-style" name="other">
+					</div>
+				</div>
+			</section>
+			<section class="section-five section-one body-sections">
+				<p class="section-one-heading">Please rate your level of agreement.</p>
+			</section>
+			<section class="radio-button-list input-sections body-sections">
+				<section class="subsection-six subsection-two">
+					<p class="personal-detail-label">On a scale 1 to 5, with 1 being "strongly agree" and 5 being "strongly disagree."</p>
+				</section>
+				<section>
+					<section class="radio-question subsection-two">
+						<p class="personal-detail-label">I like to watch movies</p>
+					</section>
+					<section class="radio-amswer section-two-info radio-section-scale">
+						<input type="radio" id="movie-1" class="radio-buttons"  name="movie" value="1" required>
+						<label for="movie-1">1</label>
+						<input type="radio" id="movie-2" class="radio-buttons" name="movie" value="2" required>
+						<label for="movie-2" >2</label>
+						<input type="radio" id="movie-3" class="radio-buttons" name="movie" value="3" required>
+						<label for="movie-3">3</label>
+						<input type="radio" id="movie-4" class="radio-buttons" name="movie" value="4" required>
+						<label for="movie-4">4</label>
+						<input type="radio" id="movie-5" class="radio-buttons" name="movie" value="5" required>
+						<label for="movie-5">5</label>
+					</section>
+					<section class="radio-question subsection-two">
+						<p class="personal-detail-label">I like to listen to radio</p>
+					</section>
+					<section class="radio-amswer section-two-info radio-section-scale">
+						<input type="radio" id="radio-1" class="radio-buttons"  name="radio" value="1" required>
+						<label for="radio-1" >1</label>
+						<input type="radio" id="radio-2" class="radio-buttons" name="radio" value="2" required>
+						<label for="radio-2" >2</label>
+						<input type="radio" id="radio-3" class="radio-buttons" name="radio" value="3" required>
+						<label for="radio-3">3</label>
+						<input type="radio" id="radio-4" class="radio-buttons" name="radio" value="4" required>
+						<label for="radio-4">4</label>
+						<input type="radio" id="radio-5" class="radio-buttons" name="radio" value="5" required>
+						<label for="radio-5">5</label>
+					</section>
+					<section class="radio-question subsection-two">
+							<p class="personal-detail-label">I like to eact out</p>
+					</section>
+					<section class="radio-amswer section-two-info radio-section-scale">
+						<input type="radio" id="eat-1" class="radio-buttons" name="eat" value="1" required>
+						<label for="eat-1" >1</label>
+						<input type="radio" id="eat-2" class="radio-buttons" name="eat" value="2" required>
+						<label for="eat-2" >2</label>
+						<input type="radio" id="eat-3" class="radio-buttons" name="eat" value="3" required>
+						<label for="eat-3">3</label>
+						<input type="radio" id="eat-4" class="radio-buttons" name="eat" value="4" required>
+						<label for="eat-4">4</label>
+						<input type="radio" id="eat-5" class="radio-buttons" name="eat" value="5" required>
+						<label for="eat-5">5</label>
+					</section>
+					<section class="radio-question subsection-two">
+						<p class="personal-detail-label">I like to watch TV</p>
+					</section>
+					<section class="radio-amswer section-two-info radio-section-scale">
+						<input type="radio" id="tv-1" class="radio-buttons" name="tv" value="1" required>
+						<label for="tv-1" >1</label>
+						<input type="radio" id="tv-2" class="radio-buttons" name="tv" value="2" required>
+						<label for="tv-2" >2</label>
+						<input type="radio" id="tv-3" class="radio-buttons" name="tv" value="3" required>
+						<label for="tv-3">3</label>
+						<input type="radio" id="tv-4" class="radio-buttons" name="tv" value="4" required>
+						<label for="tv-4">4</label>
+						<input type="radio" id="tv-5" class="radio-buttons" name="tv" value="5" required>
+						<label for="tv-5">5</label>
+					</section>
+				</section>
 			</section>
 			<section class="submit-section">
-				<button class="submit-button">SUBMIT</button>
+				<button class="submit-button">Submit</button>
 			</section>
+		</section>
 		</form>
-	</body>
+	</section>
 </body>
 </html>
+<script src="https://kit.fontawesome.com/05347b7874.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
-<!-- <script type="text/javascript" src="../static/js/script.js"></script> -->
+<script src="../static/js/Script.js"></script>
