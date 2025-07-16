@@ -28,7 +28,7 @@ def add(survey):
 
 	try:
 
-		response = cursor.execute(query, survey)
+		cursor.execute(query, survey)
 
 		conn.commit()
 		if (cursor.rowcount > 0):
@@ -37,3 +37,6 @@ def add(survey):
 		
 	except mysql.connector.Error as err:
 		return f"Error {err}"
+	finally:
+		cursor.close()
+		conn.close()

@@ -62,11 +62,11 @@ def submit():
             if (response == True):
                 return render_template("index.html", success="Thank you for your contribution!")
             if (not response == True):
-                return render_template("index.html", error=response)
+                return render_template("index.html", error="Testing not true")
             else:
-                return render_template("index.html", error=response)
+                return render_template("index.html", error="Testing else")
             
-        return render_template("index.html", error="You have already submitted your response")
+        return render_template("index.html", error="Oops! You’ve already sent in your response")
 
 
 if __name__ == "__main__":

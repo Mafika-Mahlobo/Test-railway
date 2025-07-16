@@ -60,7 +60,7 @@ $(document).ready( function() {
 
    		if (age < 5 || age > 120) {
    			alert("You must be over 5 year old, and younger than 120 years!");
-   			location.reload();
+   			
    		} else {
    			parseInt($("#date_value").val(age));
    		}
@@ -72,28 +72,21 @@ $(document).ready( function() {
         $(".mobile-options").slideToggle();   
     });
 
-    $("#form").submit(function(e) {
+	if ($(".sucess-message").text().trim() != ""){
+			$(".loading-icon").hide();
+			$(".erver-feedback").fadeIn();
+			$(".result result-1").fadeIn();
+	}
 
-        if (isSubmitting) return;
+	if ($(".error-message").text().trim() != ""){
+		$(".loading-icon").hide();
+		$(".server-feedback").fadeIn();
+		$(".result-2").fadeIn();
+	}
 
-        isSubmitting = true;
-
-        $(".page-pop-up").fadeIn();
-        $.ajax({
-            type: "POST",
-            url: "/submit",
-            data: $(this).serialize(),
-            success: function(response){
-                isSubmitting = false;
-                $(".loading-icon").hide();
-            },
-            error: function(xhr) {
-                isSubmitting = false;
-                $(".loading-icon").hide();
-            }
-        })
-
-    });
+	$("#form").submit(function(){
+		$(".page-pop-up").fadeIn();
+	});
 
 	$(".menu-item-click").click(function(){
 		$(".page-pop-up").show();

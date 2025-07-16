@@ -31,13 +31,17 @@ def check_email(email):
 		respose = cursor.fetchall()
 
 		if (len(respose) > 0):
+			print("response len > 0")
 			return True
+		print("repsonse len <= 0")
 		return False
+		
 	
 	except mysql.connector.Error as err:
+		return f"Error {err}"
+	finally:
 		cursor.close()
 		conn.close()
-		return f"Error {err}"
 
 
 

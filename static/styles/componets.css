@@ -52,7 +52,7 @@ input {
 }
 
 .personal-detail-label {
-	font-size: var(--body-font-size-xm);
+	font-size: 1em;
 }
 
 .personal-detail-input {
@@ -269,11 +269,21 @@ input[type="checkbox"] {
 .No-survey-message {
 	display: none;
 	grid-template-columns: auto auto;
+	position: fixed;
+	top: 1rem;          
+  	bottom: 1rem;
+  	left: 1rem;
+  	right: 1rem;
 	text-align: center;
 	padding: auto;
 	margin: auto;
 	background-color: var(--body-background);
-	color: black
+	color: black;    
+  	z-index: 1000;          
+  	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  	border-radius: 10px;    
+  	padding: 2rem;
+  	overflow: auto;
 }
 
 @keyframes spin {
